@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,131 +6,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Result & Grade Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <header>
         <h1>Student Result & Grade Calculator</h1>
+        <p>Calculate your academic performance easily</p>
     </header>
 
     <main>
 
-        <form id="gradeForm">
+        <div class="page-layout">
 
-            <section>
-                <fieldset>
-                    <legend>Student Details</legend>
+            <!-- LEFT SIDE: FORM -->
+            <div class="form-container">
 
-                    <p>Enter your details below. All fields are required.</p>
+                <form id="gradeForm">
 
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    <br><br>
+                    <section>
+                        <fieldset>
+                            <legend>Student Details</legend>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <br><br>
+                            <p>Enter your details below. All fields are required.</p>
 
-                    <label for="rollNo">Roll Number:</label>
-                    <input type="number" id="rollNo" name="rollNo" min="1" required>
-                    <br><br>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
 
-                    <label for="exam">Exam:</label>
-                    <input type="text" id="exam" name="exam" required>
-                    <br><br>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
 
-                    <label for="class">Class:</label>
-                    <input type="text" id="class" name="class" required>
-                    <br><br>
+                            <label for="rollNo">Roll Number:</label>
+                            <input type="number" id="rollNo" name="rollNo" min="1" required>
 
-                    <label for="section">Section:</label>
-                    <input type="text" id="section" name="section" required>
-                    <br><br>
+                            <label for="exam">Exam:</label>
+                            <input type="text" id="exam" name="exam" required>
 
-                    <label for="school">School Name:</label>
-                    <input type="text" id="school" name="school" required>
+                            <label for="class">Class:</label>
+                            <input type="text" id="class" name="class" required>
 
-                </fieldset>
-            </section>
+                            <label for="section">Section:</label>
+                            <input type="text" id="section" name="section" required>
 
-            <section>
-                <fieldset>
-                    <legend>Subject Details</legend>
+                            <label for="school">School Name:</label>
+                            <input type="text" id="school" name="school" required>
 
-                    <h2>Enter Your Subjects and Marks</h2>
+                        </fieldset>
+                    </section>
 
-                    <p>Enter marks for all five subjects (0-100).</p>
+                    <section>
+                        <fieldset>
+                            <legend>Subject Details</legend>
 
-                    <label for="subject1">Subject 1:</label>
-                    <input type="text" id="subject1" name="subject1" required>
+                            <h2>Enter Your Subjects and Marks</h2>
+                            <p>Enter marks for all five subjects (0-100).</p>
 
-                    <label for="grade1">Marks:</label>
-                    <input type="number" id="grade1" name="grade1" min="0" max="100" step="any" required>
-                    <br><br>
+                            <div class="subject-row">
+                                <label for="subject1">Subject 1:</label>
+                                <input type="text" id="subject1" name="subject1" placeholder="Subject name" required>
+                                <label for="grade1">Marks:</label>
+                                <input type="number" id="grade1" name="grade1" min="0" max="100" step="any" required>
+                            </div>
 
-                    <label for="subject2">Subject 2:</label>
-                    <input type="text" id="subject2" name="subject2" required>
+                            <div class="subject-row">
+                                <label for="subject2">Subject 2:</label>
+                                <input type="text" id="subject2" name="subject2" placeholder="Subject name" required>
+                                <label for="grade2">Marks:</label>
+                                <input type="number" id="grade2" name="grade2" min="0" max="100" step="any" required>
+                            </div>
 
-                    <label for="grade2">Marks:</label>
-                    <input type="number" id="grade2" name="grade2" min="0" max="100" step="any" required>
-                    <br><br>
+                            <div class="subject-row">
+                                <label for="subject3">Subject 3:</label>
+                                <input type="text" id="subject3" name="subject3" placeholder="Subject name" required>
+                                <label for="grade3">Marks:</label>
+                                <input type="number" id="grade3" name="grade3" min="0" max="100" step="any" required>
+                            </div>
 
-                    <label for="subject3">Subject 3:</label>
-                    <input type="text" id="subject3" name="subject3" required>
+                            <div class="subject-row">
+                                <label for="subject4">Subject 4:</label>
+                                <input type="text" id="subject4" name="subject4" placeholder="Subject name" required>
+                                <label for="grade4">Marks:</label>
+                                <input type="number" id="grade4" name="grade4" min="0" max="100" step="any" required>
+                            </div>
 
-                    <label for="grade3">Marks:</label>
-                    <input type="number" id="grade3" name="grade3" min="0" max="100" step="any" required>
-                    <br><br>
+                            <div class="subject-row">
+                                <label for="subject5">Subject 5:</label>
+                                <input type="text" id="subject5" name="subject5" placeholder="Subject name" required>
+                                <label for="grade5">Marks:</label>
+                                <input type="number" id="grade5" name="grade5" min="0" max="100" step="any" required>
+                            </div>
 
-                    <label for="subject4">Subject 4:</label>
-                    <input type="text" id="subject4" name="subject4" required>
+                        </fieldset>
+                    </section>
 
-                    <label for="grade4">Marks:</label>
-                    <input type="number" id="grade4" name="grade4" min="0" max="100" step="any" required>
-                    <br><br>
+                    <section class="form-buttons">
+                        <button type="submit">Calculate Result</button>
+                        <button type="reset">Reset</button>
+                    </section>
 
-                    <label for="subject5">Subject 5:</label>
-                    <input type="text" id="subject5" name="subject5" required>
+                </form>
 
-                    <label for="grade5">Marks:</label>
-                    <input type="number" id="grade5" name="grade5" min="0" max="100" step="any" required>
-                    <br><br>
-
-                </fieldset>
-            </section>
-
-            <section>
-                <button type="submit">Calculate Result</button>
-                <button type="reset">Reset</button>
-            </section>
-
-        </form>
-
-        <section id="resultSection">
-            <h2>Student Result</h2>
-            <div id="result" aria-live="polite">
-                Your result will appear here.
             </div>
-        </section>
 
-        <section>
-            <fieldset>
-                <legend>Grading Rules</legend>
+            <!-- RIGHT SIDE: SIDEBAR -->
+            <aside class="sidebar">
 
-                <p>90-100% : A+ (Excellent)</p>
-                <p>80-89% : A (Very Good)</p>
-                <p>70-79% : B (Good)</p>
-                <p>60-69% : C (Average)</p>
-                <p>40-59% : D (Pass)</p>
-                <p>Below 40% : F (Fail)</p>
+                <section class="grading-rules">
+                    <fieldset>
+                        <legend>Grading Rules</legend>
 
-                <p>Minimum passing marks in each subject: 35.</p>
+                        <div class="grade-item">
+                            <span>90–100%</span>
+                            <strong>A+ (Excellent)</strong>
+                        </div>
 
-            </fieldset>
-        </section>
+                        <div class="grade-item">
+                            <span>80–89%</span>
+                            <strong>A (Very Good)</strong>
+                        </div>
+
+                        <div class="grade-item">
+                            <span>70–79%</span>
+                            <strong>B (Good)</strong>
+                        </div>
+
+                        <div class="grade-item">
+                            <span>60–69%</span>
+                            <strong>C (Average)</strong>
+                        </div>
+
+                        <div class="grade-item">
+                            <span>40–59%</span>
+                            <strong>D (Pass)</strong>
+                        </div>
+
+                        <div class="grade-item">
+                            <span>Below 40%</span>
+                            <strong>F (Fail)</strong>
+                        </div>
+
+                        <div class="passing-rule">
+                            <strong>Passing Criteria</strong>
+                            <p>Minimum 35 marks are required in each subject.</p>
+                        </div>
+
+                    </fieldset>
+                </section>
+
+                <section id="resultSection">
+                    <h2>Student Result</h2>
+
+                    <div id="result" aria-live="polite">
+                        Your result will appear here after calculation.
+                    </div>
+                </section>
+
+            </aside>
+
+        </div>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
