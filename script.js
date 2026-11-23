@@ -10,15 +10,23 @@ form.addEventListener("submit", function(event) {
     let name = document.getElementById("name").value;
     let rollNo = document.getElementById("rollNo").value;
 
-    // Get marks of five subjects
-    let m1 = Number(document.getElementById("grade1").value);
-    let m2 = Number(document.getElementById("grade2").value);
-    let m3 = Number(document.getElementById("grade3").value);
-    let m4 = Number(document.getElementById("grade4").value);
-    let m5 = Number(document.getElementById("grade5").value);
+    // Get subject names
+    let subjects = [
+        document.getElementById("subject1").value,
+        document.getElementById("subject2").value,
+        document.getElementById("subject3").value,
+        document.getElementById("subject4").value,
+        document.getElementById("subject5").value
+    ];
 
-    // Store marks in an array
-    let marks = [m1, m2, m3, m4, m5];
+    // Get marks
+    let marks = [
+        Number(document.getElementById("grade1").value),
+        Number(document.getElementById("grade2").value),
+        Number(document.getElementById("grade3").value),
+        Number(document.getElementById("grade4").value),
+        Number(document.getElementById("grade5").value)
+    ];
 
     // Validate marks
     for (let i = 0; i < marks.length; i++) {
@@ -29,11 +37,14 @@ form.addEventListener("submit", function(event) {
         }
     }
 
-    // Calculate total, percentage and average
-    let total = m1 + m2 + m3 + m4 + m5;
+    // Calculate total and percentage
+    let total = 0;
+
+    for (let i = 0; i < marks.length; i++) {
+        total = total + marks[i];
+    }
 
     let percentage = total / 5;
-
     let average = total / 5;
 
     // Calculate grade
@@ -69,15 +80,114 @@ form.addEventListener("submit", function(event) {
         }
     }
 
-    // Display result
+    // Subject-wise table
+    let table = `
+        <h3>Subject-wise Performance</h3>
+
+        <div class="table-container">
+        <table class="result-table">
+
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Percentage</th>
+                <th>Status</th>
+            </tr>
+    `;
+
+    for (let i = 0; i < marks.length; i++) {
+
+        let subjectStatus = marks[i] >= 35 ? "Pass" : "Fail";
+
+        table += `
+            <tr>
+                <td>${subjects[i]}</td>
+                <td>${marks[i]}</td>
+                <td>${marks[i].toFixed(2)}%</td>
+                <td class="${subjectStatus.toLowerCase()}">${subjectStatus}</td>
+            </tr>
+        `;
+    }
+
+    table += `</table></div>`;
+
+    // Generate pie chart
+    let colors = [
+        "#2563eb",
+        "#16a34a",
+        "#f59e0b",
+        "#9333ea",
+        "#ef4444"
+    ];
+
+    let chartValues = [];
+    let currentAngle = 0;
+
+    for (let i = 0; i < marks.length; i++) {
+
+        let angle = total === 0 ? 0 : (marks[i] / total) * 360;
+
+        let nextAngle = currentAngle + angle;
+
+        chartValues.push(
+            `${colors[i]} ${currentAngle}deg ${nextAngle}deg`
+        );
+
+        currentAngle = nextAngle;
+    }
+
+    let chartBackground = total === 0
+        ? "#e2e8f0"
+        : `conic-gradient(${chartValues.join(", ")})`;
+
+    // Create chart legend
+    let legend = "";
+
+    for (let i = 0; i < subjects.length; i++) {
+
+        legend += `
+            <div class="legend-item">
+                <span style="background-color:${colors[i]}"></span>
+                ${subjects[i]} (${total === 0 ? "0" : ((marks[i] / total) * 100).toFixed(1)}%)
+            </div>
+        `;
+    }
+
+    // Display final result
     result.innerHTML = `
         <h3>Result for ${name}</h3>
-        <p>Roll Number: ${rollNo}</p>
-        <p>Total Marks: ${total} / 500</p>
-        <p>Percentage: ${percentage.toFixed(2)}%</p>
-        <p>Average: ${average.toFixed(2)}</p>
-        <p>Grade: ${grade}</p>
-        <p>Status: ${status}</p>
+
+        <div class="summary">
+            <p><strong>Roll Number:</strong> ${rollNo}</p>
+            <p><strong>Total Marks:</strong> ${total} / 500</p>
+            <p><strong>Percentage:</strong> ${percentage.toFixed(2)}%</p>
+            <p><strong>Average:</strong> ${average.toFixed(2)}</p>
+            <p><strong>Grade:</strong> ${grade}</p>
+            <p><strong>Result:</strong> ${status}</p>
+        </div>
+
+        ${table}
+
+        <h3 class="chart-heading">Subject-wise Marks Distribution</h3>
+
+        <div class="chart-container">
+
+            <div class="pie-chart"
+                style="background: ${chartBackground}">
+            </div>
+
+            <div class="chart-legend">
+                ${legend}
+            </div>
+
+        </div>
     `;
+
+});
+
+// Reset result when form is reset
+form.addEventListener("reset", function() {
+
+    result.innerHTML = "Your result will appear here after calculation.";
 
 });
