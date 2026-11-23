@@ -80,7 +80,7 @@ form.addEventListener("submit", function(event) {
         }
     }
 
-    // Subject-wise table
+    // Create subject-wise table
     let table = `
         <h3>Subject-wise Performance</h3>
 
@@ -111,7 +111,7 @@ form.addEventListener("submit", function(event) {
 
     table += `</table></div>`;
 
-    // Generate pie chart
+    // Create pie chart
     let colors = [
         "#2563eb",
         "#16a34a",
@@ -126,7 +126,6 @@ form.addEventListener("submit", function(event) {
     for (let i = 0; i < marks.length; i++) {
 
         let angle = total === 0 ? 0 : (marks[i] / total) * 360;
-
         let nextAngle = currentAngle + angle;
 
         chartValues.push(
@@ -187,7 +186,5 @@ form.addEventListener("submit", function(event) {
 
 // Reset result when form is reset
 form.addEventListener("reset", function() {
-
     result.innerHTML = "Your result will appear here after calculation.";
-
 });
